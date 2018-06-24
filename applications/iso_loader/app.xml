@@ -250,7 +250,7 @@
 
 					<panel height="45" width="52%" x="13%" y="252">
 						<label align="left" color="#000000" font="arial" height="22" text="Loader device:" width="100%" />
-						<input font="arial" fontcolor="#000000" height="18" name="device" size="30" type="text" value="auto" width="100%" />
+						<input font="arial" fontcolor="#000000" height="18" name="device" onblur="export:isoLoader_toggleLoader()" size="30" type="text" value="auto" width="100%" />
 					</panel>
 				</panel>
 
