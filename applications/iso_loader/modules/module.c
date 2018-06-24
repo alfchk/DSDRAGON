@@ -1326,7 +1326,7 @@ int isoLoader_SavePreset() {
 	memset(result, 0, sizeof(result));
 	
 	snprintf(result, sizeof(result),
-			"title = %s\ndma = %d\nasync = %d\ncdda = %d\nfastboot = %d\ntype = %d\nmode = %d\nmemory = %s\npa1 = %08lx\npv1 = %08lx\npa2 = %08lx\npv2 = %08lx\n", 
+			"title = %s\ndma = %d\nasync = %d\ncdda= %d\nloader = %d\nfastboot = %d\ntype = %d\nmode = %d\nmemory = %s\npa1 = %08lx\npv1 = %08lx\npa2 = %08lx\npv2 = %08lx\n", 
 			text, GUI_WidgetGetState(self.dma), async, 
 			GUI_WidgetGetState(self.cdda), GUI_WidgetGetState(self.fastboot), type, mode, memory, self.pa[0], self.pv[0], self.pa[1], self.pv[1]);
 
@@ -1363,7 +1363,8 @@ int isoLoader_LoadPreset() {
 	{
 		{ "dma",      CONF_INT,   (void *) &use_dma    },
 		{ "cdda",     CONF_INT,   (void *) &emu_cdda   },
-		{ "memory",   CONF_STR,   (void *) memory      },
+		{ "memory",   CONF_STR,   (void *) memory      },		
+		{ "loader",   CONF_STR,   (void *) loader      },
 		{ "async",    CONF_INT,   (void *) &emu_async  },
 		{ "mode",     CONF_INT,   (void *) &boot_mode  },
 		{ "type",     CONF_INT,   (void *) &bin_type   },
@@ -1396,6 +1397,9 @@ int isoLoader_LoadPreset() {
 
 	GUI_WidgetSetState(self.dma, use_dma);
 	isoLoader_toggleDMA(self.dma);
+	
+	GUI_WidgetSetState(self.loader[bin_type], 1);
+	isoLoader_toggleloader(self.loader[bin_type]);
 	
 	GUI_WidgetSetState(widget, 1);
 	isoLoader_toggleAsync(widget);
